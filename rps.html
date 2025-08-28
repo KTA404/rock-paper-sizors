@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice(){
+              let result = Math.floor(Math.random() * 3 + 1)
+             let computerMove
+            if (result === 1){
+                computerMove = "rock"
+            }
+            else if (result === 2){
+                computerMove = "paper"
+            }
+            else if (result === 3){
+                computerMove = "sissors"
+            }
+            return computerMove
+        }
+        function getPlayerChoice(){
+            let playerMove = prompt("rock, paper or sissors?")
+            return  playerMove
+        }
+        
+        
+        
+        
+        function playGame(){
+            let playerScore = 0;
+            let computerScore = 0;
+            function playRound(playerChoice, computerChoice){
+            if (playerChoice.toLowerCase() === computerChoice){
+                return console.log("it's a draw")
+            }
+            else if (playerChoice.toLowerCase()=== "rock" && computerChoice === "sissors"){
+                playerScore++
+                 return console.log("rock beats sissors you win!")
+            }
+            else if (playerChoice.toLowerCase() === "paper" && computerChoice === "rock"){
+                playerScore++
+                 return console.log("paper beats rock you win!")
+            }
+             else if (playerChoice.toLowerCase() === "sissors" && computerChoice === "paper"){
+                playerScore++
+                 return console.log("sissors beats paper you win!")
+            }
+             else if (computerChoice.toLowerCase() === "rock" && playerChoice === "sissors"){
+                computerScore++
+                 return console.log("rock beats sissors you lose:(")
+            }
+            else if (computerChoice.toLowerCase() === "paper" && playerChoice === "rock"){
+                computerScore++
+                 return console.log("paper beats rock you lose:(")
+            }
+             else if (computerChoice.toLowerCase() === "sissors" && playerChoice === "paper"){
+                computerScore++
+                 return console.log("sissors beats paper you lose:(")
+            }
+        }
+            playRound(getPlayerChoice(), getComputerChoice())
+            playRound(getPlayerChoice(), getComputerChoice())
+            playRound(getPlayerChoice(), getComputerChoice())
+            playRound(getPlayerChoice(), getComputerChoice())
+            playRound(getPlayerChoice(), getComputerChoice())
+
+            if (playerScore === computerScore){
+                return console.log("The score is tied, you draw the game!")
+            }
+            else if (playerScore > computerScore){
+                return console.log("The score is "+playerScore+" to "+computerScore+" so you win the game!} ")
+            }
+            else if (computerScore > playerScore){
+                return console.log('The score is '+computerScore+' to '+playerScore+' so you lose the game:(} ')
+            }
+        }
+        playGame()
+        
+
+        
+    </script>
+</body>
+</html>
