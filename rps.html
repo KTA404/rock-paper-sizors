@@ -6,7 +6,39 @@
     <title>Document</title>
 </head>
 <body>
+    <div>
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="sissors">Sissors</button>
+    </div>
+    <div id="result"></div>
+    <div>Player score = <em id="scoreP"></em> </div>
+    <div>Computer score = <em  id="scoreC"></em></div>
+
     <script>
+
+        let playerScore = 0;
+        let computerScore = 0;
+
+        document.querySelector('#rock').addEventListener('click', function(){
+            playRound('rock', getComputerChoice())
+        })
+
+        document.querySelector('#paper').addEventListener('click', function(){
+            playRound('paper', getComputerChoice())
+        })
+
+        document.querySelector('#sissors').addEventListener('click', function(){
+            playRound('sissors', getComputerChoice())
+        })
+
+          
+        
+
+
+
+
+
         function getComputerChoice(){
               let result = Math.floor(Math.random() * 3 + 1)
              let computerMove
@@ -25,59 +57,59 @@
             let playerMove = prompt("rock, paper or sissors?")
             return  playerMove
         }
-        
-        
-        
-        
-        function playGame(){
-            let playerScore = 0;
-            let computerScore = 0;
-            function playRound(playerChoice, computerChoice){
+
+        function playRound(playerChoice, computerChoice){
             if (playerChoice.toLowerCase() === computerChoice){
-                return console.log("it's a draw")
+                 document.querySelector('#result').innerHTML = ("it's a draw")
             }
             else if (playerChoice.toLowerCase()=== "rock" && computerChoice === "sissors"){
                 playerScore++
-                 return console.log("rock beats sissors you win!")
+                  document.querySelector('#result').innerHTML = "rock beats sissors you win!"
             }
             else if (playerChoice.toLowerCase() === "paper" && computerChoice === "rock"){
                 playerScore++
-                 return console.log("paper beats rock you win!")
+                  document.querySelector('#result').innerHTML = ("paper beats rock you win!")
             }
              else if (playerChoice.toLowerCase() === "sissors" && computerChoice === "paper"){
                 playerScore++
-                 return console.log("sissors beats paper you win!")
+                  document.querySelector('#result').innerHTML = ("sissors beats paper you win!")
             }
              else if (computerChoice.toLowerCase() === "rock" && playerChoice === "sissors"){
                 computerScore++
-                 return console.log("rock beats sissors you lose:(")
+                  document.querySelector('#result').innerHTML = ("rock beats sissors you lose:(")
             }
             else if (computerChoice.toLowerCase() === "paper" && playerChoice === "rock"){
                 computerScore++
-                 return console.log("paper beats rock you lose:(")
+                  document.querySelector('#result').innerHTML = ("paper beats rock you lose:(")
             }
              else if (computerChoice.toLowerCase() === "sissors" && playerChoice === "paper"){
                 computerScore++
-                 return console.log("sissors beats paper you lose:(")
+                  document.querySelector('#result').innerHTML = ("sissors beats paper you lose:(") 
             }
-        }
-            playRound(getPlayerChoice(), getComputerChoice())
-            playRound(getPlayerChoice(), getComputerChoice())
-            playRound(getPlayerChoice(), getComputerChoice())
-            playRound(getPlayerChoice(), getComputerChoice())
-            playRound(getPlayerChoice(), getComputerChoice())
+            document.querySelector('#scoreP').innerHTML = (playerScore); 
+            document.querySelector('#scoreC').innerHTML = (computerScore); 
 
+            if(playerScore >= 5 || computerScore >= 5){
+            playGame()
+        }
+        
+        }
+    
+        function playGame(){
             if (playerScore === computerScore){
-                return console.log("The score is tied, you draw the game!")
+                return document.querySelector('#result').innerHTML = ("The score is tied, you draw the game!")
             }
             else if (playerScore > computerScore){
-                return console.log("The score is "+playerScore+" to "+computerScore+" so you win the game!} ")
+                return document.querySelector('#result').innerHTML = ("The score is "+playerScore+" to "+computerScore+" so you win the game!} ")
             }
             else if (computerScore > playerScore){
-                return console.log('The score is '+computerScore+' to '+playerScore+' so you lose the game:(} ')
+                return document.querySelector('#result').innerHTML = ('The score is '+computerScore+' to '+playerScore+' so you lose the game:(} ')
             }
         }
-        playGame()
+            
+      
+        
+        
         
 
         
